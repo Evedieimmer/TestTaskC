@@ -151,18 +151,18 @@ namespace TestTask
             {
                 Console.WriteLine("=====Task № 5=====");
                 Console.WriteLine("deposit");
-                int d = int.Parse(Console.ReadLine());
+                double d = int.Parse(Console.ReadLine());
                 Console.WriteLine("percent");
                 int p = int.Parse(Console.ReadLine());
                 Console.WriteLine("total");
                 int total = int.Parse(Console.ReadLine());
                 int i = 1;
-                double profit;
+                //double profit;
                 do
                 {
-                    profit = d + (d * p * 0.01) * i;
+                    d = d + (d * p * 0.01);
                     i++;
-                } while (profit < total);
+                } while (d < total);
                 Console.WriteLine($"after {i - 1} years");
                 Console.WriteLine("Press enter");
                 Console.ReadKey();
