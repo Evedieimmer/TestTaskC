@@ -94,21 +94,33 @@ namespace TestTask
             {
                 Console.WriteLine("=====Task № 3=====");
                 Console.WriteLine("enter rubleCost: ");
-                int rubleCost = int.Parse(Console.ReadLine());
+                decimal rubleCost = int.Parse(Console.ReadLine());
                 Console.WriteLine("enter pennyCost: ");
-                int pennyCost = int.Parse(Console.ReadLine());
+                decimal pennyCost = int.Parse(Console.ReadLine());
                 Console.WriteLine("enter rublePayment: ");
-                int rublePayment = int.Parse(Console.ReadLine());
+                decimal rublePayment = int.Parse(Console.ReadLine());
                 Console.WriteLine("enter pennyPayment: ");
-                int pennyPayment = int.Parse(Console.ReadLine());
-                double moneyRuble = (rublePayment + pennyPayment / 100.0) - (rubleCost + pennyCost / 100.0);
+                decimal pennyPayment = int.Parse(Console.ReadLine());
+                decimal moneyRuble = (rublePayment + pennyPayment / 100) - (rubleCost + pennyCost / 100);
+                string[] summ;
                 if (moneyRuble > 0)
                 {
-                    Console.WriteLine($"your change: {Math.Truncate(moneyRuble)} ruble and {(Math.Round(moneyRuble, 2) - Math.Truncate(moneyRuble)) * 100} penny.");
+                    try
+                    {
+                        summ = moneyRuble.ToString().Split(",");
+                        Console.WriteLine($"your change: {summ[0]} ruble and {summ[1]} penny.");
+                    }
+                    catch { Console.WriteLine($"your change: {moneyRuble} ruble."); }
                 }
                 else
                 {
-                    Console.WriteLine($"need to pay extra: {Math.Abs(Math.Truncate(moneyRuble))} ruble and {Math.Abs((Math.Round(moneyRuble, 2) - Math.Truncate(moneyRuble)) * 100)} penny.");
+                    try
+                    {
+                        summ = Math.Abs(moneyRuble).ToString().Split(",");
+                        Console.WriteLine($"need to pay extra: {summ[0]} ruble and {summ[1]} penny.");
+                    }
+                    catch { Console.WriteLine($"need to pay extra: {Math.Abs(moneyRuble)} ruble."); }
+                   
                 }
                 Console.WriteLine("Press enter");
                 Console.ReadKey();
@@ -157,7 +169,6 @@ namespace TestTask
                 Console.WriteLine("total");
                 int total = int.Parse(Console.ReadLine());
                 int i = 1;
-                //double profit;
                 do
                 {
                     d = d + (d * p * 0.01);
